@@ -136,3 +136,8 @@ footer {
   background: linear-gradient(to bottom, #3ee2, #3ee2 50%, #3992 50%, #3952);
   background-size: 100% 2px;
 }
+
+div.graph canvas {
+  width: 100%;
+  height: 200px;
+}
