@@ -1,0 +1,13 @@
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+.git
+.gitignore
+.editorconfig
+
+key.pem
+csr.pem
+server.crt
+
+run.cmd

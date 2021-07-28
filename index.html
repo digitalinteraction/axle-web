@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <title>AxLE Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="module" src="./lib/Application.mjs"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
+</head>
+<body class="noconnections no-annotation">
+  <header>
+    <h1>
+      AxLE Recorder
+      <input type="text" id="title" placeholder="Untitled">
+    </h1>
+  </header>
+  <main>
+    <div class="stream-controls">
+      <button class="button" id="disconnect">⏏️️️️️&nbsp;&nbsp;Disconnect</button>
+      <button class="button" id="connect">▶️&nbsp;&nbsp;Connect</button>
+      <button class="button" id="stop">⏹&nbsp;&nbsp;Stop</button>
+      <button class="button" id="record">⏺&nbsp;&nbsp;Record</button>
+    </div>
+    <div id="graphs"></div>
+    <div class="device-controls">
+      <div class="loader" id="addLoader"></div>
+      <button class="button" id="add">➕&nbsp;&nbsp;Add Device</button>
+    </div>
+  </main>
+  <section class="annotate">
+    <h3>Annotation</h3>
+    <div class="annotation-container">
+      <select id="annotation" size="0"></select>
+    </div>
+  </section>
+  <footer>
+    <div class="tag-edit">
+      <label>Annotation:
+        <input id="tags" type="text" placeholder="Tag A; Tag B; Tag C">
+      </label>
+    </div>
+    <div id="output"></div>
+    <div class="footer">AxLE WebBluetooth</div>
+  </footer>
+</body>
+</html>

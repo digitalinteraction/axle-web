@@ -1,0 +1,4 @@
+/server.crt
+/csr.pem
+/key.pem
+*.zip

@@ -1,0 +1,7 @@
+root = true
+
+# 2 space indentation
+[**.{md,js,mjs,json,html,css}]
+charset = utf-8
+indent_style = space
+indent_size = 2
