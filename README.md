@@ -1,22 +1,29 @@
 # AxLE WebBluetooth
 
-DEVICE: dc:52:12:0a:4d:d2
-OTHER: df:00:13:b4:7c:32
+Live streaming data from AxLE devices (part of [Open Movement](https://openmovement.dev)).  This repo is moved from the old GitLab repo.
 
-UART Service UUID: 6E400001-B5A3-F393-E0A9-E50E24DCCA9E
-TX Characteristic UUID: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E
-RX Characteristic UUID: 6E400003-B5A3-F393-E0A9-E50E24DCCA9E
+Website:
 
+* https://digitalinteraction.github.io/axle-web/
 
 
-## Serve over SSL using a self-signed certificate
+## Technical Notes
+
+### UART Service
+
+* UART Service UUID: `6E400001-B5A3-F393-E0A9-E50E24DCCA9E`
+* TX Characteristic UUID: `6E400002-B5A3-F393-E0A9-E50E24DCCA9E`
+* RX Characteristic UUID: `6E400003-B5A3-F393-E0A9-E50E24DCCA9E`
+
+### Serve locally over HTTPS using a self-signed certificate
 
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -keyout key.pem -out csr.pem && openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out server.crt
 http-server -S -K key.pem -C server.crt
 ```
 
-## Dokku
+<!--
+### Dokku (configured for use on Open Lab internal servers)
 
 ```bash
 #dokku config:set axle-web CUSTOM_DOMAIN=axle-web.openlab.ncl.ac.uk
@@ -24,17 +31,12 @@ git push dokku master
 ```
 
 Web: (https://axle-web.openlab.ncl.ac.uk)[https://axle-web.openlab.ncl.ac.uk] or (https://openlab.ncl.ac.uk/dokku/axle-web/)[https://openlab.ncl.ac.uk/dokku/axle-web/]
+-->
 
 
-## Commands
+### Commands
 
 ```
-Command prefix:
-
-Applications (BLE test apps) to test with:
-Nordic UART2 (Android/IOS)
-Nordic Master Controller (Android/IOS)
-
 Commands allowed when unauthenticated:
 EXXXXXX: Erase all e.g. EXXXXXX (master password only)
 XXXXXX = master password
@@ -157,3 +159,5 @@ X: Device reset - Used to reset to bootloader for firmware update
 * Value setting entered in ascii hex format. 
 i.e. 266 = 256 + 10 = 0A01
 ```
+
+
