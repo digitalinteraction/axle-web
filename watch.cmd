@@ -40,7 +40,7 @@ choice /C 0 /D 0 /T 1 >nul
 
 ::: Display Ngrok current forwarding details
 SET TUNNEL=
-FOR /F "tokens=* USEBACKQ" %%F IN (`curl -s http://127.0.0.1:4040/api/tunnels ^| bash -c "grep -o 'https://............\.ngrok\.io'"`) DO (
+FOR /F "tokens=* USEBACKQ" %%F IN (`curl -s http://127.0.0.1:4040/api/tunnels ^| bash -c "grep -oE 'https://[-0-9a-f]+\.ngrok\.io'"`) DO (
   SET TUNNEL=%%F
 )
 IF "%TUNNEL%"=="" GOTO wait_for_ngrok
