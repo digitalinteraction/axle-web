@@ -44,13 +44,22 @@ FOR /F "tokens=* USEBACKQ" %%F IN (`curl -s http://127.0.0.1:4040/api/tunnels ^|
   SET TUNNEL=%%F
 )
 IF "%TUNNEL%"=="" GOTO wait_for_ngrok
+
+SET URL=%TUNNEL%#debug
+
 ECHO Now listening on: %TUNNEL%
 SET QRCODE=
 FOR %%X IN (qrcode.exe) do set QRCODE=%%~$PATH:X
-IF DEFINED QRCODE "%QRCODE%" --invert --output:medium "%TUNNEL%"
-ECHO.%TUNNEL%
-rem adb shell am start -n com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity -d "%TUNNEL%" --activity-clear-task
-rem (open local Chrome and use "Send to your devices" to open on phone).
-IF NOT "%TUNNEL%"=="" start chrome.exe "%TUNNEL%#debug"
+IF DEFINED QRCODE "%QRCODE%" --invert --output:medium "%URL%"
+ECHO.%URL%
+
+::: Start remote browser (otherwise: can use local "Send to your devices") -- chrome://inspect#devices
+adb shell am start -n com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity -d "%URL%" --activity-clear-task
+
+::: Start local browser
+rem IF NOT "%URL%"=="" start chrome.exe --remote-debugging-port=9222 --user-data-dir=remote-debug-profile "%URL%#debug"
+
+ECHO Waiting 5 seconds...
+CHOICE /C 0 /D 0 /T 5 >NUL
 
 echo Will live reload any changes.  (This project has no build process to watch.)
