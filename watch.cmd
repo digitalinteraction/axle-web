@@ -53,7 +53,7 @@ goto wait_for_ngrok
 echo.Waiting for ngrok...
 choice /C 0 /D 0 /T 1 >nul
 set TUNNEL=
-for /F "tokens=* usebackq" %%F IN (`curl -s http://127.0.0.1:4040/api/tunnels ^| powershell -c "$input | select-string -pattern '(https://[-a-f0-9]+\.ngrok\.io)' | %% {$url = $_.matches.groups[1].value; write-output $url} " `) DO set TUNNEL=%%F
+for /F "tokens=* usebackq" %%F IN (`curl -s http://127.0.0.1:4040/api/tunnels ^| powershell -c "$input | select-string -pattern '(https://[-a-f0-9]+\.[a-z][a-z]\.ngrok\.io)' | %% {$url = $_.matches.groups[1].value; write-output $url} " `) DO set TUNNEL=%%F
 if "%TUNNEL%"=="" goto wait_for_ngrok
 echo Now listening on: %TUNNEL%
 set URL=%TUNNEL%#debug
@@ -79,12 +79,15 @@ adb shell am start -n com.android.chrome/org.chromium.chrome.browser.ChromeTabbe
 :skip_adb
 
 ::: Start local browser
-set CHROME=%PROGRAMFILES(x86)%\Google\Chrome\Application\chrome.exe
+set CHROME=
+if exist "%PROGRAMFILES(x86)%\Google\Chrome\Application\chrome.exe" set CHROME=%PROGRAMFILES(x86)%\Google\Chrome\Application\chrome.exe
+if exist "%PROGRAMFILES%\Google\Chrome\Application\chrome.exe" set CHROME=%PROGRAMFILES%\Google\Chrome\Application\chrome.exe
 if not exist "%CHROME%" (
   echo WARNING: Chrome not found.
   goto skip_chrome
 )
-rem   "%CHROME%" --remote-debugging-port=9222 --user-data-dir=remote-debug-profile "%URL%"
+rem chrome: URLs are blocked from command line, so send to info page
+"%CHROME%" chrome-inspect-devices.html
 :skip_chrome
 
 ::: Start Android screen mirroring (if not running)
@@ -109,4 +112,5 @@ if exist "%SCRCPY%" (
 ECHO Waiting 5 seconds...
 CHOICE /C 0 /D 0 /T 5 >NUL
 
+:no_devices
 echo NOTE: Will live reload any changes to the source files. (This project has no build process to watch.)

@@ -84,7 +84,7 @@ NXXXX or N?: Set epoch period span with NXX*.
 
 Y: Hardware control, empty battery using outputs - Not for normal use
 
-WXXXX: Write download block number, responds as with 'Q'uery
+WXXXX: Write download block number, responds as with 'Q' query
 Q or Q?: Query command. 
   Response: time, T:
   active block,  B:
@@ -93,7 +93,7 @@ Q or Q?: Query command.
   block count,  C:
   download block  I:
   
-SXXXX: Synchronise epoch timing by offset X*. 
+SXXXX: Sync epoch timing by offset X*. 
   Response: S:xxxx
   
 R: Read command. 
@@ -132,7 +132,7 @@ R: Read command.
     uint16_t check;
   } Epoch_block_t;
 
-I: IMU sream on/off
+I: IMU stream on/off
   Response: Streaming accel data - Raw ascii-hex data stream in format
 
           // Add streaming packet data header for time, batt, temp, count, etc... 
