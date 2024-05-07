@@ -2,3 +2,4 @@
 /csr.pem
 /key.pem
 *.zip
+.DS_Store
