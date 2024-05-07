@@ -6,6 +6,20 @@ Website:
 
 * https://digitalinteraction.github.io/axle-web/
 
+<!--
+## Local Development
+
+* In *VS Code*, with the *Live Server* extension installed, in the status bar, click: *Go Live* (*Live Server: Open with Live Server* / `extension.liveServer.goOnline`)
+* Ensure your browser supports WebBluetooth
+
+## To Do
+
+* [ ] Send specific user-supplied string to device
+* [ ] Bootloader mode
+* [ ] Configure recording mode
+* [ ] Download data mode
+
+-->
 
 ## Technical Notes
 

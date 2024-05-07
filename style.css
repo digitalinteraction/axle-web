@@ -83,6 +83,11 @@ footer {
   grid-template-rows: 1fr;
 }
 
+footer .footer {
+  font-size: small;
+  text-align: right;
+}
+
 .button {
   box-shadow: inset 0px 1px 0px 0px #bbdaf7;
   background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
@@ -140,4 +145,8 @@ footer {
 div.graph canvas {
   width: 100%;
   height: 200px;
+}
+
+.annotation-container:has(select#annotation:empty) {
+  display: none;
 }
